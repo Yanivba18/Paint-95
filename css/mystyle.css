@@ -2,3 +2,13 @@
     height: 500px;
     width: 500px;
 }
+
+.box-draw {
+    height: 5px;
+    width: 5px;
+    position: absolute;
+}
+
+.black {
+    background-color: black;
+}
