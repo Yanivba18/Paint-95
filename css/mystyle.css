@@ -14,6 +14,7 @@ body {
     display: flex;
     justify-content: center;
     padding-top: 40px;
+    flex-direction: column;
 }
 
 .block-box-side {
@@ -28,8 +29,9 @@ body {
 
 }
 
-.align-text-center {
+.menu-items {
     text-align: center;
+    margin: 10px;
 }
 
 .canvas {
@@ -39,8 +41,6 @@ body {
 }
 
 .box-draw {
-    height: 5px;
-    width: 5px;
     position: absolute;
 }
 
@@ -65,4 +65,35 @@ body {
     width: 25px;
     border-radius: 50%;
     display: inline-block;
+    cursor: pointer;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
 }
