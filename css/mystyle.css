@@ -1,3 +1,8 @@
+body {
+    height: 100vh;
+    overflow: hidden;
+}
+
 .canvas {
     height: 500px;
     width: 500px;
