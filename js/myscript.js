@@ -11,7 +11,7 @@
             draw(ev);
             let drawFunc = (e) => {draw(e)};
             canvas.addEventListener("mousemove", drawFunc);
-            canvas.addEventListener("mouseup", () => {canvas.removeEventListener("mousemove", drawFunc)});
+            document.body.addEventListener("mouseup", () => {canvas.removeEventListener("mousemove", drawFunc)});
         }); 
     }
 
