@@ -12,19 +12,22 @@
 <body>
     <div class="wrapper">
         <div class="side-menu">
-            <div class="align-text-center">
-                <span class="dot black"></span>
-                <span class="dot red"></span>
+            <div class="menu-items">
+                <dot class="dot black" id="black"></dot>
+                <dot class="dot red" id="red"></dot>
             </div>
-            <div class="align-text-center">
-                <span class="dot blue"></span>
-                <span class="dot green"></span>
+            <div class="menu-items">
+                <dot class="dot blue" id="blue"></dot>
+                <dot class="dot green" id="green"></dot>
+            </div>
+            <div class="menu-items">
+                Choose the size of the brush:
+                <input type="range" min="5" max="50" value="5" class="slider" id="size">
             </div>
         </div>
         <div class="canvas" id="canvas"></div>
         <div class="block-box-side"></div>
     </div>
-    <div class="block-box-bottom"></div>
     <script src="./js/myscript.js"></script>
 </body>
 
