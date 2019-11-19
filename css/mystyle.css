@@ -1,11 +1,22 @@
 body {
     height: 100vh;
     overflow: hidden;
+    margin: 0;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.side-menu {
+    width: 100px;
+    background: gray;
 }
 
 .canvas {
     height: 500px;
     width: 500px;
+    border: 2px solid black;
 }
 
 .box-draw {
