@@ -2,7 +2,7 @@
 (() => {
     let canvas = document.getElementById("canvas");
     let canvasPosition = canvas.getBoundingClientRect();
-    var color = "black";
+    let color = "black";
     let getBoxCoordinates = {
         top: canvasPosition.top,
         bottom: canvasPosition.bottom,
@@ -21,7 +21,9 @@
             canvas.addEventListener("mousemove", drawFunc);
             document.body.addEventListener("mouseup", () => { canvas.removeEventListener("mousemove", drawFunc) });
         });
-        document.querySelectorAll(".dot").addEventListener("click", )
+        let dots = $('dot');
+        dots.click(() => {color = event.target.id}) //addListeners("click", () => {color = event.target.id})
+        //document.querySelectorAll("dot").addEventListener("click", () => {color = event.target.id});
     }
 
     let getDrawSize = () => {
