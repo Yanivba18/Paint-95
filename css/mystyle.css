@@ -1,43 +1,42 @@
 body {
     height: 100vh;
     overflow: hidden;
-    margin: 0;    
+    margin: 0;
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(64,69,75,1) 100%);
 }
 
 .wrapper {
     display: flex;
+    justify-content: center;
+    margin-left: 150px;
+    height: 100%;
+    align-items: center;
 }
 
 .side-menu {
-    width: 100px;
-    background: gray;
+    width: 150px;
+    background: lightgray;
     display: flex;
-    justify-content: center;
-    padding-top: 40px;
+    justify-content: space-around;
     flex-direction: column;
+    position: fixed;
+    height: 100%;
+    border: 1px solid black;    
 }
 
-.block-box-side {
-    width: 100px;
-    z-index: 999;
-}
-
-.block-box-bottom {
-    width: 100vw;
-    height: 10px;
-    z-index: 9999;
-
-}
 
 .menu-items {
     text-align: center;
     margin: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .canvas {
     height: 500px;
     width: 500px;
     border: 2px solid black;
+    background-color: white;
 }
 
 .box-draw {
@@ -73,7 +72,7 @@ body {
     width: 100%;
     height: 15px;
     border-radius: 5px;
-    background: #d3d3d3;
+    background: gray;
     outline: none;
     opacity: 0.7;
     -webkit-transition: .2s;
@@ -96,4 +95,37 @@ body {
     border-radius: 50%;
     background: #4CAF50;
     cursor: pointer;
+}
+
+.button {
+    display: inline-block;
+    padding: 15px 25px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+.button:hover {
+    background-color: #3e8e41
+}
+
+.button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.shadow {
+    -webkit-box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.4);
+    /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.4);
+    /* Firefox 3.5 - 3.6 */
+    box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.4);
+    /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }
