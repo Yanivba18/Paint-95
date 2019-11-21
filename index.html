@@ -10,23 +10,29 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="side-menu">
-            <div class="menu-items">
+    <div class="side-menu shadow">
+        <div class="menu-items">
+            <div>
                 <dot class="dot black" id="black"></dot>
                 <dot class="dot red" id="red"></dot>
             </div>
-            <div class="menu-items">
+            <div>
                 <dot class="dot blue" id="blue"></dot>
                 <dot class="dot green" id="green"></dot>
             </div>
-            <div class="menu-items">
-                Choose the size of the brush:
-                <input type="range" min="5" max="50" value="5" class="slider" id="size">
-            </div>
+        </div>        
+        <div class="menu-items">
+            Choose the size of the brush:
+            <input type="range" min="5" max="50" value="5" class="slider" id="size">
         </div>
-        <div class="canvas" id="canvas"></div>
-        <div class="block-box-side"></div>
+        <div class="menu-items">
+            <button class="button" id="erase">Erase Canavs</button>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="canvas" id="canvas">
+            
+        </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="./js/myscript.js"></script>
