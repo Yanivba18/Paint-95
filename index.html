@@ -10,7 +10,18 @@
 </head>
 
 <body>
-    <div class="top-menu shadow">
+    <div class="top-menu">
+        <span>
+            <button class="button" id="addTab">+</button>
+        </span>
+
+        <ul id="tabs">
+            <li><a href="#canvas1">Tab 1</a></li>            
+        </ul>
+    </div>
+    <!-- <div class="top-menu tabs">
+    </div> -->
+    <div class="bottom-slider shadow">
         <input type="range" min="50" max="1000" value="500" class="slider" id="canvasSize">
     </div>
     <div class="side-menu shadow">
@@ -37,9 +48,7 @@
         </div>
     </div>
     <div class="wrapper">
-        <div class="canvas" id="canvas">
-
-        </div>
+        <div class="canvas" id="canvas1"></div>    
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="./js/myscript.js"></script>
