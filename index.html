@@ -11,7 +11,7 @@
 
 <body>
     <div class="top-menu shadow">
-        <input type="range" min="50" max="1000" value="500" class="slider" id="size">
+        <input type="range" min="50" max="1000" value="500" class="slider" id="canvasSize">
     </div>
     <div class="side-menu shadow">
         <div class="menu-items">
@@ -26,11 +26,14 @@
             </div>
         </div>
         <div class="menu-items">
+            <button class="button" id="eraser">Eraser</button>
+        </div>
+        <div class="menu-items">
             Choose the size of the brush:
             <input type="range" min="5" max="50" value="5" class="slider" id="size">
         </div>
         <div class="menu-items">
-            <button class="button" id="erase">Erase Canvas</button>
+            <button class="button" id="clear">Clear Canvas</button>
         </div>
     </div>
     <div class="wrapper">
