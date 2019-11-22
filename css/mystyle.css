@@ -7,9 +7,8 @@ body {
 
 .wrapper {
     display: flex;
-    justify-content: center;
-    margin-left: 150px;
-    margin-top: 50px;
+    margin-left: 160px;
+    margin-top: 60px;
     height: 100%;
 }
 
@@ -49,13 +48,8 @@ body {
 }
 
 .canvas {
-    height: 500px;
-    width: 500px;
     border: 2px solid black;
     background-color: white;
-    position: absolute;
-    top: 60px;
-    left: 160px;
 }
 
 .box-draw {
@@ -76,6 +70,10 @@ body {
 
 .green {
     background-color: green;
+}
+
+.white {
+    background-color: white;
 }
 
 .dot {
