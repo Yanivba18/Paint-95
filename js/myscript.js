@@ -1,10 +1,11 @@
 "use strict";
 (() => {
-    let canvasNum = 1;
-    let canvas = document.getElementById(`canvas${canvasNum}`);
+    let canvasId = 1;
+    let canvas = document.getElementById(canvasId);
     let color = "black";
     let tabLinks = [];
     let canvasDivs = [];
+    let tabsNum = 1;
 
     let main = () => {
         $(window).on('load', () => { init() })
@@ -26,26 +27,31 @@
         }
         // Assign onclick events to the tab links, and
         // highlight the first tab
-        var i = 0;
+        // var i = 0;
 
         for (var id in tabLinks) {
             tabLinks[id].onclick = showTab;
             tabLinks[id].onfocus = function () { this.blur() };
-            if (i == 0) tabLinks[id].className = 'selected';
-            i++;
+            if (id == canvasId) tabLinks[id].className = 'selected';
+            // i++;
         }
 
         // Hide all content divs except the first
-        var i = 0;
+        // var i = 0;
 
         for (var id in canvasDivs) {
-            if (i != 0) canvasDivs[id].className = 'canvas hide';
-            i++;
+            if (id != canvasId) canvasDivs[id].className = 'canvas hide';
+            // i++;
         }
     }
 
-    function showTab() {
-        var selectedId = getHash(this.getAttribute('href'));
+    function showTab(e, id) {
+        id = (typeof id !== 'undefined') ? id : getHash(this.getAttribute('href'));
+
+        console.log('showTabs works ID: ' + id);
+        let selectedId = id;
+        canvasId = selectedId;
+        canvas = document.getElementById(canvasId);
 
         // Highlight the selected tab, and dim all others.
         // Also show the selected content div, and hide all others.
@@ -74,8 +80,7 @@
         return url.substring(hashPos + 1);
     }
 
-
-    let addListeners = () => {
+    function canvasListener() {
         canvas.addEventListener("mousedown", (ev) => {
             if (ev.button == 0) {
                 draw(ev);
@@ -84,6 +89,10 @@
                 document.body.addEventListener("mouseup", () => { canvas.removeEventListener("mousemove", drawFunc) });
             }
         });
+    }
+
+    let addListeners = () => {
+        canvasListener();
         let dots = $('dot');
         dots.click(() => { color = event.target.id });
 
@@ -97,13 +106,21 @@
         $btnEraser.click(function () { color = "white" });
         $(window).resize(function () { hideOutOfCanvas(); setCanvasSliderMax(); });
         $('#canvasSize').on('input', setCanvasSize);
-        // $('addTab').click(addCanvas)
+        let addTabBtn = $('#addTab');
+        addTabBtn.click(addCanvas);
 
     }
 
-    // function addCanvas() {
-
-    // }
+    function addCanvas() {
+        tabsNum++;
+        console.log("addBtn event works")
+        $('#tabs').append(`<li><a href="#${tabsNum}" id="link${tabsNum}">Canvas #${tabsNum}</a></li>`);
+        $('.wrapper').append(`<div class="canvas hide" id=${tabsNum}></div>`);
+        init();
+        showTab(undefined, tabsNum);
+        setCanvasSize();
+        canvasListener();
+    }
 
     function setCanvasSliderMax() {
         let $slider = $('#canvasSize');
@@ -141,7 +158,7 @@
     }
 
     function getDrawnBoxes() {
-        let divs = $('.box-draw');
+        let divs = $(`#${canvasId} .box-draw`);
         return divs;
     }
 
