@@ -16,13 +16,15 @@
 
     function init() {
         // Grab the tab links and content divs from the page
-        var tabListItems = document.getElementById('tabs').childNodes;
-        for (var i = 0; i < tabListItems.length; i++) {
+        let tabListItems = document.getElementById('tabs').childNodes;
+        for (let i = 0; i < tabListItems.length; i++) {
             if (tabListItems[i].nodeName == "LI") {
-                var tabLink = getFirstChildWithTagName(tabListItems[i], 'A');
-                var id = getHash(tabLink.getAttribute('href'));
-                tabLinks[id] = tabLink;
-                canvasDivs[id] = document.getElementById(id);
+                let tabLink = getFirstChildWithTagName(tabListItems[i], 'A');
+                if (tabLink != undefined) {
+                    let id = getHash(tabLink.getAttribute('href'));
+                    tabLinks[id] = tabLink;
+                    canvasDivs[id] = document.getElementById(id);
+                }
             }
         }
         // Assign onclick events to the tab links, and
@@ -93,33 +95,167 @@
 
     let addListeners = () => {
         canvasListener();
-        let dots = $('dot');
-        dots.click(() => { color = event.target.id });
-
+        // let dots = $('dot');
+        // dots.click(() => { color = event.target.id });
+        let colorPicker = $('#colorPicker');
+        colorPicker.on('change', () => {color = `#${colorPicker.val()}`})
         let $btn = $('#clear');
-        $btn.click(function () {
-            while (canvas.firstChild) {
-                canvas.removeChild(canvas.firstChild);
-            }
-        });
+        $btn.click(clearCanvas);
         let $btnEraser = $('#eraser');
         $btnEraser.click(function () { color = "white" });
         $(window).resize(function () { hideOutOfCanvas(); setCanvasSliderMax(); });
         $('#canvasSize').on('input', setCanvasSize);
         let addTabBtn = $('#addTab');
         addTabBtn.click(addCanvas);
+        let saveBtn = $('#save');
+        saveBtn.click(save);
+        let loadBtn = $('#load');
+        loadBtn.click(load);
+        $('#link1').on('auxclick' , function(e) {
+            // if (e.button == 1) {
+                e.preventDefault();
+                closeTab(e);
+            // }
+        })
+    }
+
+    let modal = (function () {
+        let method = {},
+            $overlay,
+            $modal,
+            $content,
+            $close;
+
+        // Appending the modal HTML
+        $overlay = $('<div id="overlay"></div>');
+        $modal = $('<div id="modal"></div>');
+        $content = $('<div id="content"></div>');
+        $close = $('<a id="close" href="#">close</a>');
+
+        $modal.hide();
+        $overlay.hide();
+        $modal.append($content, $close);
+
+        $(document).ready(function () {
+            $('body').append($overlay, $modal);
+        });
+        // Center the modal in the viewport
+        method.center = function () {
+            var top, left;
+
+            top = Math.max($(window).height() - $modal.outerHeight(), 0) / 2;
+            left = Math.max($(window).width() - $modal.outerWidth(), 0) / 2;
+
+            $modal.css({
+                top: top + $(window).scrollTop(),
+                left: left + $(window).scrollLeft()
+            });
+        };
+
+        // Open the modal
+        method.open = function (settings) {
+            $content.empty().append(settings.content);
+
+            $modal.css({
+                width: settings.width || 'auto',
+                height: settings.height || 'auto'
+            })
+
+            method.center();
+
+            $(window).bind('resize.modal', method.center);
+
+            $modal.show();
+            $overlay.show();
+        };
+
+        // Close the modal
+        method.close = function () {
+            $modal.hide();
+            $overlay.hide();
+            $content.empty();
+            $(window).unbind('resize.modal');
+        };
+
+        $close.click(function (e) {
+            e.preventDefault();
+            method.close();
+        });
+
+        return method;
+    }());
+
+    function clearCanvas() {
+        while (canvas.firstChild) {
+            canvas.removeChild(canvas.firstChild);
+        }
+    };
+
+    function save() {
+        let saveForm = "<label for='saveName'>Save by name: &nbsp;</label><input type='text' id='saveName'><br><button class=button id='saveNameBtn'>Save</button>"
+        modal.open({ content: $(saveForm)});
+        console.log("save click works")
+        $('#saveNameBtn').click(() => {            
+            let drawnDivs = $(`#${canvasId}`).html();
+            let nameToSave = $('#saveName').val();
+            if (nameToSave != "") {
+                localStorage.setItem(nameToSave, JSON.stringify(drawnDivs));
+                modal.close();
+                $(`#link${canvasId}`).text(nameToSave);
+            } else {
+                alert('Cannot save with an empty name')
+            }
+        })
+    }
+
+    function load() {
+        let savedDivs = [];
+        let chosenSave;
+        let str = "<h3>Click on the save you want to load: </h3><ol>"
+        Object.keys(localStorage).forEach(function (key) {
+            savedDivs.push(key);
+            str += `<li class="clickable" id="key:${key}">${key}</li>`
+        })
+        str += "</ol> <br> <button class='button' id='deleteSaves'>Delete all saves</button>"
+        modal.open({ content: $(str)});
+        $('#deleteSaves').click(() => {localStorage.clear(); modal.close();});
+        for (let key of savedDivs) {
+            document.getElementById(`key:${key}`).addEventListener('click', function() {
+                console.log('clicking works on li for load')
+                chosenSave = JSON.parse(localStorage.getItem(this.innerHTML));
+                clearCanvas();
+                $(`#${canvasId}`).append(chosenSave);
+                modal.close();
+                $(`#link${canvasId}`).text(this.innerHTML);
+            });
+        }
 
     }
 
+
     function addCanvas() {
         tabsNum++;
-        console.log("addBtn event works")
-        $('#tabs').append(`<li><a href="#${tabsNum}" id="link${tabsNum}">Canvas #${tabsNum}</a></li>`);
-        $('.wrapper').append(`<div class="canvas hide" id=${tabsNum}></div>`);
-        init();
-        showTab(undefined, tabsNum);
-        setCanvasSize();
-        canvasListener();
+        if (tabsNum < 6) {
+            console.log("addBtn event works")
+            $('#tabs').append(`<li><a href="#${tabsNum}" id="link${tabsNum}">Canvas #${tabsNum}</a></li>`);
+            $('.wrapper').append(`<div class="canvas hide" id=${tabsNum}></div>`);
+            init();
+            showTab(undefined, tabsNum);
+            setCanvasSize();
+            canvasListener();
+        } else {
+            alert('Sorry, maximum of 5 tabs. ')
+        }
+        $(`#link${tabsNum}`).on('auxclick' , function(e) {
+                e.preventDefault();
+                closeTab(e);
+        })
+    }
+
+    function closeTab(e) {
+        let closedCanvas = getHash(e.target.getAttribute('href'));
+        $(e.target).remove();
+        $(`#${closedCanvas}`).remove();
     }
 
     function setCanvasSliderMax() {
@@ -158,7 +294,7 @@
     }
 
     function getDrawnBoxes() {
-        let divs = $(`#${canvasId} .box-draw`);
+        let divs = $(`#${canvasId}`).children();
         return divs;
     }
 
@@ -177,7 +313,8 @@
         let x = eVar.clientX;
         let y = eVar.clientY;
         let box = document.createElement("div");
-        box.className = `box-draw ${color}`;
+        box.className = `box-draw`;
+        box.style.backgroundColor = color;
         box.style.top = `${y}px`;
         box.style.left = `${x}px`;
         box.style.height = getDrawSize();
