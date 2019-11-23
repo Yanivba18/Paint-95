@@ -13,7 +13,7 @@
 <body>
     <div class="top-menu">
         <span>
-            <button class="button" id="addTab">+</button>
+            <button class="button" id="addTab">Add New Canvas</button>
         </span>
 
         <ul id="tabs">
@@ -26,32 +26,38 @@
         <input type="range" min="50" max="1000" value="500" class="slider" id="canvasSize">
     </div>
     <div class="side-menu shadow">
-        <div class="menu-items">
-            <div>
-                <!-- <input type="color"> -->
-                <dot class="dot black" id="black"></dot>
-                <dot class="dot red" id="red"></dot>
+        <div>
+            <div class="menu-items">
+                <h2><b>Paint Tools</b></h2>
             </div>
-            <div>
-                <dot class="dot blue" id="blue"></dot>
-                <dot class="dot green" id="green"></dot>
+            <div class="menu-items">
+                <h4>Current color</h4> <input class="jscolor" value="ab2567" id='colorPicker'>
+                <h5>click to change</h5>
+            </div>
+           
+            <div class="menu-items">
+                <h4>Brush size</h4>
+                <input type="range" min="5" max="50" value="5" class="slider" id="size">
+            </div>
+            <div class="menu-items margin-top-25">
+                    <button class="button" id="eraser">Eraser</button>
+                </div>
+            <div class="menu-items">
+                <button class="button" id="clear">Clear Canvas</button>
             </div>
         </div>
-        <div class="menu-items">
-            <button class="button" id="eraser">Eraser</button>
-        </div>
-        <div class="menu-items">
-            Choose the size of the brush:
-            <input type="range" min="5" max="50" value="5" class="slider" id="size">
-        </div>
-        <div class="menu-items">
-            <button class="button" id="clear">Clear Canvas</button>
+        <div>
+            <div class="menu-items">
+                <button class="button" id="save">Save</button>
+                <button class="button" id="load">Load</button>
+            </div>            
         </div>
     </div>
     <div class="wrapper">
         <div class="canvas" id="1"></div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="./js/jscolor.js"></script>
     <script src="./js/myscript.js"></script>
 </body>
 
