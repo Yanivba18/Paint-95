@@ -6,6 +6,7 @@
     let tabLinks = [];
     let canvasDivs = [];
     let tabsNum = 1;
+    let drawShape = 'box-draw';
 
     let main = () => {
         $(window).on('load', () => { init() })
@@ -35,15 +36,10 @@
             tabLinks[id].onclick = showTab;
             tabLinks[id].onfocus = function () { this.blur() };
             if (id == canvasId) tabLinks[id].className = 'selected';
-            // i++;
         }
-
-        // Hide all content divs except the first
-        // var i = 0;
 
         for (var id in canvasDivs) {
             if (id != canvasId) canvasDivs[id].className = 'canvas hide';
-            // i++;
         }
     }
 
@@ -116,7 +112,14 @@
                 e.preventDefault();
                 closeTab(e);
             // }
+        });
+        $('#square').click(() => {drawShape = 'box-draw'});
+        $('#circle').click(() => {drawShape = 'box-draw circle'})
+
+        document.body.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
         })
+
     }
 
     let modal = (function () {
@@ -313,7 +316,7 @@
         let x = eVar.clientX;
         let y = eVar.clientY;
         let box = document.createElement("div");
-        box.className = `box-draw`;
+        box.className = `${drawShape}`;
         box.style.backgroundColor = color;
         box.style.top = `${y}px`;
         box.style.left = `${x}px`;
