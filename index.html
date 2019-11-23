@@ -15,7 +15,6 @@
         <span>
             <button class="button" id="addTab">Add New Canvas</button>
         </span>
-
         <ul id="tabs">
             <li><a href="#1" id="link1">Canvas #1</a></li>
         </ul>
@@ -28,6 +27,9 @@
     <div class="side-menu shadow">
         <div>
             <div class="menu-items">
+                <span>
+                    <button class="button help w-25-h-25 icons" id="help"></button>
+                </span>
                 <h2><b>Paint Tools</b></h2>
             </div>
             <div class="menu-items">
@@ -39,19 +41,24 @@
                 <h4>Brush size</h4>
                 <input type="range" min="5" max="50" value="5" class="slider" id="size">
             </div>
-            <div class="menu-items">
+            <div class="menu-items margin-top-25">
                 <h4>Brush shape</h4>
                 <div class="flex-space-around">
                     <span>
-                        <button class="w-40-h-40 bg-box button" id="square"></button>
+                        <button class="w-40-h-40 bg-box button icons" id="square"></button>
                     </span>
                     <span>
-                        <button class="w-40-h-40 button dot" id="circle"></button>
+                        <button class="w-40-h-40 button dot icons" id="circle"></button>
                     </span>
                 </div>
             </div>
             <div class="menu-items margin-top-25">
-                <button class="button" id="eraser">Eraser</button>
+                <h4>Erasers</h4>
+                <div class="flex-space-around">
+                    <span>
+                        <button class="button eraser w-40-h-40 icons" id="eraser"></button>
+                    </span>
+                </div>
             </div>
             <div class="menu-items">
                 <button class="button" id="clear">Clear Canvas</button>
