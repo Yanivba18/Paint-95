@@ -30,7 +30,6 @@
         }
         // Assign onclick events to the tab links, and
         // highlight the first tab
-        // var i = 0;
 
         for (var id in tabLinks) {
             tabLinks[id].onclick = showTab;
@@ -91,8 +90,6 @@
 
     let addListeners = () => {
         canvasListener();
-        // let dots = $('dot');
-        // dots.click(() => { color = event.target.id });
         let colorPicker = $('#colorPicker');
         colorPicker.on('change', () => {color = `#${colorPicker.val()}`})
         let $btn = $('#clear');
