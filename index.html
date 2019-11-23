@@ -34,14 +34,25 @@
                 <h4>Current color</h4> <input class="jscolor" value="ab2567" id='colorPicker'>
                 <h5>click to change</h5>
             </div>
-           
+
             <div class="menu-items">
                 <h4>Brush size</h4>
                 <input type="range" min="5" max="50" value="5" class="slider" id="size">
             </div>
-            <div class="menu-items margin-top-25">
-                    <button class="button" id="eraser">Eraser</button>
+            <div class="menu-items">
+                <h4>Brush shape</h4>
+                <div class="flex-space-around">
+                    <span>
+                        <button class="w-40-h-40 bg-box button" id="square"></button>
+                    </span>
+                    <span>
+                        <button class="w-40-h-40 button dot" id="circle"></button>
+                    </span>
                 </div>
+            </div>
+            <div class="menu-items margin-top-25">
+                <button class="button" id="eraser">Eraser</button>
+            </div>
             <div class="menu-items">
                 <button class="button" id="clear">Clear Canvas</button>
             </div>
@@ -50,7 +61,7 @@
             <div class="menu-items">
                 <button class="button" id="save">Save</button>
                 <button class="button" id="load">Load</button>
-            </div>            
+            </div>
         </div>
     </div>
     <div class="wrapper">
