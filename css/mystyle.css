@@ -12,6 +12,7 @@ h4, h5 {
 
 ul#tabs {
     list-style-type: none;
+    padding-left: 20px;
 }
 
 ul#tabs li {
@@ -233,6 +234,17 @@ ul#tabs li a.selected {
     padding: 4px 12px;
 }
 
+.w-25-h-25 {
+    height: 25px;
+    width: 25px;
+}
+
+.icons {
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding: 0!important;
+}
+
 .w-40-h-40 {
     width: 40px;
     height: 40px;
@@ -240,15 +252,18 @@ ul#tabs li a.selected {
 
 .bg-box {
     background-image: url(../img/rounded_square-512.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-    padding: 0!important;
 }
 
-.dot {    
+.dot {
     background-image: url(../img/circle-512.png);
-    background-size: contain;
-    padding: 0!important;
+}
+
+.eraser {
+    background-image: url(../img/eraser.png);
+}
+
+.help {
+    background-image: url(../img/help_1-512.png);
 }
 
 .shadow {
