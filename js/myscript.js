@@ -9,7 +9,7 @@
     let drawShape = 'box-draw';
 
     let main = () => {
-        $(window).on('load', () => { init() })
+        $(window).on('load', () => { init() });
         addListeners();
         setCanvasSize();
         setCanvasSliderMax();
@@ -107,15 +107,15 @@
         saveBtn.click(save);
         let loadBtn = $('#load');
         loadBtn.click(load);
+        let helpBtn = $('#help');
+        helpBtn.click(helpModal);
         $('#link1').on('auxclick' , function(e) {
-            // if (e.button == 1) {
                 e.preventDefault();
                 closeTab(e);
-            // }
         });
+        
         $('#square').click(() => {drawShape = 'box-draw'});
         $('#circle').click(() => {drawShape = 'box-draw circle'})
-
         document.body.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         })
@@ -232,9 +232,12 @@
                 $(`#link${canvasId}`).text(this.innerHTML);
             });
         }
-
     }
 
+    function helpModal() {
+        let str = "<h3>Need help?</h3><p>Use the mouse cursor to paint in the canvas. <br>You can choose the canvas size using the slider at the bottom. <br>Press Add New Canvas to open a tab with a new canvas. <br> You can close a canvas by pressing the right or middle mouse button on the tab.<br>You can save your drawing using the save button and load old saves using the load button.</p><br><h4>This paint was created by Yaniv Barzily for the purpose of ITC Bootcamp course</h4>";
+        modal.open({content: $(str)});
+    }
 
     function addCanvas() {
         tabsNum++;
