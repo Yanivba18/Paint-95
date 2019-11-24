@@ -6,7 +6,9 @@
     let tabLinks = [];
     let canvasDivs = [];
     let tabsNum = 1;
+    let tabsCount = 1;
     let drawShape = 'box-draw';
+    let tabsSpace = true;
 
     let main = () => {
         $(window).on('load', () => { init() });
@@ -236,17 +238,18 @@
 
     function addCanvas() {
         tabsNum++;
+        tabsCount++;
         if (tabsNum < 6) {
-            $('#tabs').append(`<li><a href="#${tabsNum}" id="link${tabsNum}">Canvas #${tabsNum}</a></li>`);
-            $('.wrapper').append(`<div class="canvas hide" id=${tabsNum}></div>`);
+            $('#tabs').append(`<li><a href="#${tabsCount}" id="link${tabsCount}">Canvas #${tabsCount}</a></li>`);
+            $('.wrapper').append(`<div class="canvas hide" id=${tabsCount}></div>`);
             init();
-            showTab(undefined, tabsNum);
+            showTab(undefined, tabsCount);
             setCanvasSize();
             canvasListener();
         } else {
             alert('Sorry, maximum of 5 tabs. ')
         }
-        $(`#link${tabsNum}`).on('auxclick' , function(e) {
+        $(`#link${tabsCount}`).on('auxclick' , function(e) {
                 e.preventDefault();
                 closeTab(e);
         })
@@ -256,6 +259,7 @@
         let closedCanvas = getHash(e.target.getAttribute('href'));
         $(e.target).remove();
         $(`#${closedCanvas}`).remove();
+        tabsNum--;
     }
 
     function setCanvasSliderMax() {
