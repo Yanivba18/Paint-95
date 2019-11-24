@@ -224,9 +224,9 @@
                 $(`#${canvasId}`).append(chosenSave);
                 modal.close();
                 $(`#link${canvasId}`).text(this.innerHTML);
+                hideOutOfCanvas();
             });
         }
-        hideOutOfCanvas();
     }
 
     function helpModal() {
