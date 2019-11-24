@@ -45,7 +45,6 @@
     function showTab(e, id) {
         id = (typeof id !== 'undefined') ? id : getHash(this.getAttribute('href'));
 
-        console.log('showTabs works ID: ' + id);
         let selectedId = id;
         canvasId = selectedId;
         canvas = document.getElementById(canvasId);
@@ -194,7 +193,6 @@
     function save() {
         let saveForm = "<label for='saveName'>Save by name: &nbsp;</label><input type='text' id='saveName'><br><button class=button id='saveNameBtn'>Save</button>"
         modal.open({ content: $(saveForm)});
-        console.log("save click works")
         $('#saveNameBtn').click(() => {            
             let drawnDivs = $(`#${canvasId}`).html();
             let nameToSave = $('#saveName').val();
@@ -221,7 +219,6 @@
         $('#deleteSaves').click(() => {localStorage.clear(); modal.close();});
         for (let key of savedDivs) {
             document.getElementById(`key:${key}`).addEventListener('click', function() {
-                console.log('clicking works on li for load')
                 chosenSave = JSON.parse(localStorage.getItem(this.innerHTML));
                 clearCanvas();
                 $(`#${canvasId}`).append(chosenSave);
@@ -229,6 +226,7 @@
                 $(`#link${canvasId}`).text(this.innerHTML);
             });
         }
+        hideOutOfCanvas();
     }
 
     function helpModal() {
@@ -239,7 +237,6 @@
     function addCanvas() {
         tabsNum++;
         if (tabsNum < 6) {
-            console.log("addBtn event works")
             $('#tabs').append(`<li><a href="#${tabsNum}" id="link${tabsNum}">Canvas #${tabsNum}</a></li>`);
             $('.wrapper').append(`<div class="canvas hide" id=${tabsNum}></div>`);
             init();
@@ -284,7 +281,6 @@
     function hideOutOfCanvas() {
         let divs = getDrawnBoxes();
         let rectPos = getCanvasPos();
-        console.log("resize event works!")
         for (let i = 0; i < divs.length; i++) {
             let divPos = divs.eq(i).offset();
             let divSize = divs.eq(i).width();
@@ -303,7 +299,6 @@
 
     function getCanvasPos() {
         let canvasPosition = canvas.getBoundingClientRect();
-        console.log(`getting rect size: ${canvasPosition}`)
         return canvasPosition;
     }
 
