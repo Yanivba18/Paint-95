@@ -39,9 +39,6 @@ ul#tabs li a.selected {
     padding: 0.7em 0.3em 0.38em 0.3em;
 }
 
-.margin-top-25 {
-    margin-top: 25px!important;
-}
 
 .wrapper {
     display: flex;
